@@ -1,29 +1,20 @@
-# Airborne 
+# Airborne (Boostcom fork)
 
-[![airborne travis](http://img.shields.io/travis/brooklynDev/airborne.svg?branch=master&style=flat-square)](https://travis-ci.org/brooklynDev/airborne)
-[![airborne coveralls](http://img.shields.io/coveralls/brooklynDev/airborne/master.svg?style=flat-square)](https://coveralls.io/r/brooklynDev/airborne?branch=master)
-[![Code Climate](http://img.shields.io/codeclimate/github/brooklynDev/airborne.svg?style=flat-square)](https://codeclimate.com/github/brooklynDev/airborne)
-[![airborne gem version](http://img.shields.io/gem/v/airborne.svg?style=flat-square)](http://rubygems.org/gems/airborne)
-[![airbore gem downloads](http://img.shields.io/gem/dt/airborne.svg?style=flat-square)](http://rubygems.org/gems/airborne)
-[![airborne gem stable downloads](http://img.shields.io/gem/dv/airborne/stable.svg?style=flat-square)](http://rubygems.org/gems/airborne)
+[![airborne travis](http://img.shields.io/travis/Boostcom/airborne.svg?branch=master&style=flat-square)](https://travis-ci.org/brooklynDev/airborne)
 
-RSpec driven API testing framework
+This is a fork of [Airborne](https://github.com/Boostcom/airborne) made at [Boostcom](https://boostcom.no). Changes included:
 
-## Looking for Project Maintainers
-I am looking for project maintainers to help keep airborne up to date and bug-free while avoiding feature creep and maintaining backwards compatibility.
+* Raise exception when missing expected hash (modified PR https://github.com/brooklynDev/airborne/pull/103)
+* Improved error message when using `expect_json_sizes`
 
-Comment [here](https://github.com/brooklynDev/airborne/issues/134) if you would like to help out.
+To use, put this in your Gemfile:
 
-## Installation
-
-Install Airborne:
-```shell
-$ gem install airborne
-```
-Or add it to your Gemfile:
 ```ruby
-gem 'airborne'
+gem 'airborne', github: 'Boostcom/airborne', branch: 'dev'
 ```
+
+The rest of the README comes from the original repository.
+
 ## Creating Tests
 
 ```ruby
