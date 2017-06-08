@@ -82,4 +82,12 @@ describe 'expect_json_types' do
     get '/simple_get'
     expect { expect_json_types(name: :foo) }.to raise_error(ExpectationError, "Expected type foo\nis an invalid type")
   end
+
+  it 'Should throw missing hash error' do
+    mock_get('simple_get')
+    get '/simple_get'
+    expect do
+      expect_json_types({ name: :string, address: { street: :string, city: :string }})
+    end.to raise_error(ExpectationError, 'Expected hash "address" not found')
+  end
 end
