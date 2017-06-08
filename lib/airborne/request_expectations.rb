@@ -122,7 +122,12 @@ module Airborne
         end
 
         next expect_json_types_impl(type, value) if hash?(type)
-        next type.call(value) if type.is_a?(Proc)
+
+        if type.is_a?(Proc)
+          # pass key and actual value if possible; only value otherwise
+          next type.call(value, prop, actual) if type.arity == 3 || type.arity <= -2
+          next type.call(value)
+        end
 
         type_string = type.to_s
 
@@ -221,7 +226,15 @@ module Airborne
     end
 
     def convert_expectation_for_json_sizes(expected_size)
-      ->(data) { expect(data.size).to eq(expected_size) }
+      ->(data, prop = nil, actual = nil) {
+        if prop && !data.respond_to?(:size)
+          message = "Value of #{prop.inspect} is #{data.inspect} and it does not respond to #size"
+          message << "\n#{actual}" if actual
+          raise ExpectationError, message
+        end
+
+        expect(data.size).to eq(expected_size)
+      }
     end
 
     def ensure_hash_contains_prop(prop_name, hash)
